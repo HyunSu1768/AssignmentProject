@@ -17,11 +17,16 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "account_id",nullable = false,length = 20)
     private String accountId;
+
     private String name;
+
     private String password;
+
     @Enumerated(EnumType.STRING)
     private Grade grade;
+
     private String studentNumber;
 
 
