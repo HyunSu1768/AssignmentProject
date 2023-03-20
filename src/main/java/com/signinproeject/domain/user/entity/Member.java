@@ -13,6 +13,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Member {
+
+    //test
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
