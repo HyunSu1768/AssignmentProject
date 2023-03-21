@@ -1,7 +1,8 @@
 package com.signinproeject.domain.user.controller;
 
 import com.signinproeject.domain.user.entity.Member;
-import com.signinproeject.domain.user.service.MemberDTO;
+import com.signinproeject.domain.user.service.MemberListResponse;
+import com.signinproeject.domain.user.service.MemberSignUpRequest;
 import com.signinproeject.domain.user.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,17 +19,17 @@ public class AuthController {
     private final MemberService memberService;
 
     @GetMapping("/all")
-    public List<MemberDTO> findMembers(){
-        List<MemberDTO> list = memberService.findALlMembers();
-        return list;
+    public MemberListResponse findMembers(){
+
+        return memberService.findAllMembers();
 
     }
 
     @PostMapping
     public Member createMember(
             @Valid @RequestBody
-            MemberDTO memberDTO
+            MemberSignUpRequest memberSignUpRequest
     ){
-        return memberService.join(memberDTO);
+        return memberService.join(memberSignUpRequest);
     }
 }

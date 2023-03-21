@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class MemberDTO {
+public class MemberSignUpRequest {
 
     @Size(max = 20,message = "최대 20자 입니다")
     private String accountId;

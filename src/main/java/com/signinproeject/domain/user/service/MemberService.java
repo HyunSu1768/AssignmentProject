@@ -7,7 +7,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,7 +18,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public Member join(MemberDTO member) {
+    public Member join(MemberSignUpRequest member) {
 
         String EncodedPassword = passwordEncoder.encode(member.getPassword());
 
@@ -37,23 +36,27 @@ public class MemberService {
 
     }
 
-    public List<MemberDTO> findALlMembers(){
-        List<Member> list = memberRepository.findAll();
-        List<MemberDTO> memberDTOList = new ArrayList<>();
-        for(Member member : list){
-            MemberDTO memberDTO = MemberDTO.builder()
-                    .accountId(member.getAccountId())
-                    .name(member.getName())
-                    .studentNumber(member.getStudentNumber())
-                    .grade(member.getGrade())
-                    .password(member.getPassword())
-                    .build();
-            memberDTOList.add(memberDTO);
-        }
-        return memberDTOList;
+    public MemberListResponse findAllMembers(){
+
+        List<MemberResponse> memberResponse = memberRepository.findAll().stream()
+                .map(it -> MemberResponse.builder()
+                        .name(it.getName())
+                        .accountId(it.getAccountId())
+                        .grade(it.getGrade())
+                        .studentNumber(it.getStudentNumber())
+                        .build()
+                )
+                .toList();
+
+        return MemberListResponse.builder()
+                .memberResponseList(memberResponse)
+                .build();
+
+
     }
 
-    private void validateDuplicateMember(MemberDTO member){
+
+    private void validateDuplicateMember(MemberSignUpRequest member){
 
         if(memberRepository.existsByAccountId(member.getAccountId())){
             throw new IllegalStateException("이미 존재하는 회원입니다.");
