@@ -1,4 +1,4 @@
-package com.signinproeject.domain.user.service;
+package com.signinproeject.domain.user.service.member;
 
 import com.signinproeject.domain.user.entity.Grade;
 import jakarta.validation.constraints.Max;
@@ -18,7 +18,10 @@ public class MemberSignUpRequest {
     @Size(max = 4,min = 2,message = "2자 이상 4자 이하여야 합니다")
     private String name;
 
-    @Pattern(regexp = "^(?=.*\\d{4,})(?=.*[a-zA-Z]{4,}).{4,16}$",message = "영어 4자 이상, 숫자 4자 이상, 16자 이하여야 합니다.")
+    @Pattern(
+        regexp = "^(?=.*\\d{4,})(?=.*[a-zA-Z]{4,}).{4,16}$",
+        message = "영어 4자 이상, 숫자 4자 이상, 16자 이하여야 합니다."
+    )
     private String password;
 
 
@@ -26,5 +29,5 @@ public class MemberSignUpRequest {
 
     @Min(value = 1101, message = "1101학번 이상만 가능합니다")
     @Max(value = 3420, message = "3420학번 이하만 가능합니다")
-    private String studentNumber;
+    private int studentNumber;
 }

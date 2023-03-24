@@ -1,10 +1,10 @@
-package com.signinproeject.domain.user.service;
+package com.signinproeject.domain.user.service.member;
 
+import com.signinproeject.domain.user.service.post.PostResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.jpa.boot.spi.EntityManagerFactoryBuilder;
 
 import java.util.List;
 

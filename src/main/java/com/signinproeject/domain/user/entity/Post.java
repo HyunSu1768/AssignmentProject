@@ -1,0 +1,31 @@
+package com.signinproeject.domain.user.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Getter
+@Table(name = "post")
+@NoArgsConstructor
+public class Post {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "description")
+    private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    public Post(String title, String description,  Member member) {
+        this.title = title;
+        this.description = description;
+        this.member = member;
+    }
+}
