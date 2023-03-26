@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -20,7 +22,7 @@ public class CommentService {
     public Comment newComment(CommentRequest commentRequest,Long postId){
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new EntityNotFoundException("포스트 아이디 " + postId + "는 없는 포스트 아이디 입니다."));
-        Comment comment = new Comment(commentRequest.getContent(),post);
+        Comment comment = new Comment(commentRequest.getContent(),post, LocalDateTime.now());
 
         return commentRepository.save(comment);
 

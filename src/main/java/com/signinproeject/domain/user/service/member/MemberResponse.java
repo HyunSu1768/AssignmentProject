@@ -31,6 +31,7 @@ public class MemberResponse {
                         .title(it.getTitle())
                         .commentResponses(it.getComments().stream()
                                 .map(it1 -> CommentResponse.builder()
+                                        .createTime(it1.getCreateTime())
                                         .content(it1.getContent())
                                         .build())
                                 .toList())
