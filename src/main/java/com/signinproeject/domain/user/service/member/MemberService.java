@@ -1,9 +1,11 @@
 package com.signinproeject.domain.user.service.member;
 
 import com.signinproeject.domain.user.entity.Member;
+import com.signinproeject.domain.user.repository.CommentRepository;
 import com.signinproeject.domain.user.repository.MemberRepository;
 import com.signinproeject.domain.user.repository.PostRepository;
 import com.signinproeject.domain.user.service.post.PostResponse;
+import com.signinproeject.domain.user.service.post.comment.CommentResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
     private final MemberRepository memberRepository;
+
+    private final CommentRepository commentRepository;
 
     @Transactional
     public Member join(MemberSignUpRequest member) {
@@ -43,6 +47,7 @@ public class MemberService {
         List<MemberResponse> memberResponseList = memberRepository.findAll()
                 .stream()
                 .map(MemberResponse::of).toList();
+
 
         return MemberListResponse.builder()
                 .memberResponseList(memberResponseList)
