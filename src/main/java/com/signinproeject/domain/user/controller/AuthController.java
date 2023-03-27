@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 @RequestMapping("/member")
 public class AuthController {
+
     private final MemberService memberService;
 
     @GetMapping("/all")

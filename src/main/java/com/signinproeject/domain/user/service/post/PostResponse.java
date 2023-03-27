@@ -1,8 +1,7 @@
 package com.signinproeject.domain.user.service.post;
 
-import com.signinproeject.domain.user.entity.Member;
 import com.signinproeject.domain.user.service.post.comment.CommentResponse;
-import jakarta.persistence.*;
+import com.signinproeject.domain.user.service.post.like.LikeResponse;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +19,9 @@ public class PostResponse {
 
     private Long memberId;
 
-    private List<CommentResponse> commentResponses;
+    private int like;
 
+    private List<CommentResponse> commentResponses;
+    private List<LikeResponse> likeResponses;
 
 }

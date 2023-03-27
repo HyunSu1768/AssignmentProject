@@ -1,7 +1,6 @@
 package com.signinproeject.domain.user.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +15,10 @@ public class Post {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @OneToMany(mappedBy = "post")
+    private List<Likes> likes;
+
     @Column(name = "title")
     private String title;
 
@@ -28,6 +31,8 @@ public class Post {
 
     @OneToMany(mappedBy = "post")
     private List<Comment> comments = new ArrayList<>();
+
+
 
     public Post(String title, String description,  Member member) {
         this.title = title;

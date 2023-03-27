@@ -4,6 +4,7 @@ import com.signinproeject.domain.user.entity.Grade;
 import com.signinproeject.domain.user.entity.Member;
 import com.signinproeject.domain.user.service.post.PostResponse;
 import com.signinproeject.domain.user.service.post.comment.CommentResponse;
+import com.signinproeject.domain.user.service.post.like.LikeResponse;
 import lombok.Builder;
 import lombok.Data;
 
@@ -26,9 +27,19 @@ public class MemberResponse {
     public static MemberResponse of(Member member){
         List<PostResponse> postResponseList = member.getPostList().stream()
                 .map(it -> PostResponse.builder()
+
+                        .like(it.getLikes().size())
+
+                        .likeResponses(it.getLikes().stream().map(it1 -> LikeResponse.builder()
+                                .postId(it.getId())
+                                .memberId(it.getMember().getId())
+                                .build())
+                                .toList())
+
                         .description(it.getDescription())
                         .memberId(it.getMember().getId())
                         .title(it.getTitle())
+
                         .commentResponses(it.getComments().stream()
                                 .map(it1 -> CommentResponse.builder()
                                         .createTime(it1.getCreateTime())
