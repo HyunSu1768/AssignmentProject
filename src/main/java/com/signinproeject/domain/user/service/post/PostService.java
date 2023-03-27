@@ -6,6 +6,7 @@ import com.signinproeject.domain.user.repository.MemberRepository;
 import com.signinproeject.domain.user.repository.PostRepository;
 import com.signinproeject.domain.user.service.member.MemberListResponse;
 import com.signinproeject.domain.user.service.member.MemberService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +31,8 @@ public class PostService {
         postRepository.save(post);
     }
 
-    public PostListResponse findAllPost(){
+    public PostListResponse findAllPost() {
+
         List<PostResponse> postResponses = postRepository.findAll().stream()
                 .map(it -> PostResponse.builder()
                         .description(it.getDescription())
@@ -42,6 +44,7 @@ public class PostService {
                 .postCreateRequests(postResponses)
                 .build();
     }
+
 
 
 }
