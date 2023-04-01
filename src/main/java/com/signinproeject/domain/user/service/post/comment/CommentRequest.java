@@ -1,12 +1,12 @@
 package com.signinproeject.domain.user.service.post.comment;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
-@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class CommentRequest {
 
     private String content;

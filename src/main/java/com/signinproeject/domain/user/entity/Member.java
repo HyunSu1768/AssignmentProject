@@ -1,6 +1,6 @@
 package com.signinproeject.domain.user.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,7 +27,7 @@ public class Member {
     @Column(name = "name", nullable = false, length = 4)
     private String name;
 
-    @Column(name = "password",nullable = false, length = 60)
+    @Column(name = "password",nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)

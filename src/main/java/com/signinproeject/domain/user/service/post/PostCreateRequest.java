@@ -1,11 +1,9 @@
 package com.signinproeject.domain.user.service.post;
 
-import com.signinproeject.domain.user.entity.Member;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
+
+import javax.validation.constraints.Size;
 
 @Data
 @Builder

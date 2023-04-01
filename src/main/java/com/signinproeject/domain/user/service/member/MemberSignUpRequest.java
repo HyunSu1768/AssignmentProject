@@ -1,10 +1,10 @@
 package com.signinproeject.domain.user.service.member;
 
 import com.signinproeject.domain.user.entity.Grade;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
 

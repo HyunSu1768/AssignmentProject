@@ -7,8 +7,6 @@ import lombok.Setter;
 @Setter
 public class SetLikeRequest {
 
-    private Long memberId;
-
     private Long postId;
 
 }

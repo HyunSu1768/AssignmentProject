@@ -22,17 +22,15 @@ public class PostController {
     public void addLike(
             @RequestBody SetLikeRequest setLikeRequest
             ){
-        likeService.addLike(setLikeRequest.getMemberId(), setLikeRequest.getPostId());
+        likeService.addLike(setLikeRequest.getPostId());
     }
 
-    @PostMapping("/{memberId}")
+    @PostMapping
     public void createPost(
             @RequestBody
-            PostCreateRequest post,
-            @PathVariable
-            Long memberId
+            PostCreateRequest post
     ){
-        postService.createPost(post,memberId);
+        postService.createPost(post);
     }
     @GetMapping
     public PostListResponse findAllPost(){

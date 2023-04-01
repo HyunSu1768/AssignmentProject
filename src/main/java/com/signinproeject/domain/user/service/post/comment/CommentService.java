@@ -4,7 +4,7 @@ import com.signinproeject.domain.user.entity.Comment;
 import com.signinproeject.domain.user.entity.Post;
 import com.signinproeject.domain.user.repository.CommentRepository;
 import com.signinproeject.domain.user.repository.PostRepository;
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
