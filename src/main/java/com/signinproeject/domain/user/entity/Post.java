@@ -2,11 +2,10 @@ package com.signinproeject.domain.user.entity;
 
 import javax.persistence.*;
 
-import com.signinproeject.domain.user.service.post.PostUpdateRequest;
+import com.signinproeject.domain.user.Request.PostUpdateRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 

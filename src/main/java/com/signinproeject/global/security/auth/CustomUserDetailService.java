@@ -1,8 +1,7 @@
 package com.signinproeject.global.security.auth;
 
 import com.signinproeject.domain.user.entity.Member;
-import com.signinproeject.domain.user.repository.MemberRepository;
-import com.signinproeject.domain.user.service.member.MemberService;
+import com.signinproeject.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
