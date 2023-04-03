@@ -39,5 +39,8 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Post> postList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member")
+    private List<Comment> commentList = new ArrayList<>();
+
 
 }

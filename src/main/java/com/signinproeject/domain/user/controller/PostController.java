@@ -1,7 +1,6 @@
 package com.signinproeject.domain.user.controller;
 
 import com.signinproeject.domain.user.entity.Member;
-import com.signinproeject.domain.user.entity.Post;
 import com.signinproeject.domain.user.service.member.MemberService;
 import com.signinproeject.domain.user.service.post.PostCreateRequest;
 import com.signinproeject.domain.user.service.post.PostListResponse;
@@ -10,7 +9,6 @@ import com.signinproeject.domain.user.service.post.PostUpdateRequest;
 import com.signinproeject.domain.user.service.post.like.LikeService;
 import com.signinproeject.domain.user.service.post.like.SetLikeRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
