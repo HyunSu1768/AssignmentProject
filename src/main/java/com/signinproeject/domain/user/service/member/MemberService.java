@@ -30,6 +30,7 @@ public class MemberService {
     @Transactional
     public Member join(MemberSignUpRequest member) {
 
+
         String EncodedPassword = passwordEncoder.encode(member.getPassword());
 
         validateDuplicateMember(member);
@@ -46,11 +47,12 @@ public class MemberService {
     }
 
     @Transactional
-    public TokenResponse login(MemberLoginRequest request){
-        Member member = memberRepository.findByAccountId(request.getUsername())
-                .orElseThrow( () -> new UsernameNotFoundException("찾을 수 없는 멤버입니다."));
+    public TokenResponse login(MemberLoginRequest request) {
 
-        if(!passwordEncoder.matches(request.getPassword(),member.getPassword())){
+        Member member = memberRepository.findByAccountId(request.getUsername())
+                .orElseThrow(() -> new UsernameNotFoundException("찾을 수 없는 멤버입니다."));
+
+        if (!passwordEncoder.matches(request.getPassword(), member.getPassword())) {
             throw new IllegalStateException("잘못된 비밀번호 입니다.");
         }
 
@@ -60,6 +62,11 @@ public class MemberService {
                 .build();
 
 
+    }
+
+    public Member findOne(String memberName){
+        return memberRepository.findByName(memberName)
+                .orElseThrow(()-> new UsernameNotFoundException("찾을 수 없는 멤버이름 입니다."));
     }
 
     public MemberListResponse findAllMembers(){

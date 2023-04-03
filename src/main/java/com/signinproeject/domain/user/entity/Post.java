@@ -1,6 +1,8 @@
 package com.signinproeject.domain.user.entity;
 
 import javax.persistence.*;
+
+import com.signinproeject.domain.user.service.post.PostUpdateRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -40,5 +42,10 @@ public class Post {
         this.title = title;
         this.description = description;
         this.member = member;
+    }
+
+    public void editPost(PostUpdateRequest postUpdateRequest){
+        this.title = postUpdateRequest.getTitle();
+        this.description = postUpdateRequest.getDescription();
     }
 }

@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -29,6 +31,19 @@ public class PostService {
                 .orElseThrow(() -> new EntityNotFoundException("찾을 수 없는 엔티티 입니다."));
 
         Post post = new Post(postCreateRequest.getTitle(),postCreateRequest.getDescription(),member);
+        postRepository.save(post);
+    }
+
+    @Transactional
+    public void updatePost(Long postId,Long memberId,PostUpdateRequest postUpdateRequest){
+        Post post = postRepository.findById(postId)
+                .orElseThrow(()-> new EntityNotFoundException("찾을 수 없는 엔티티 입니다."));
+        if(!Objects.equals(post.getMember().getId(), memberId)){
+            throw new IllegalStateException();
+        }
+
+        post.editPost(postUpdateRequest);
+
         postRepository.save(post);
     }
 

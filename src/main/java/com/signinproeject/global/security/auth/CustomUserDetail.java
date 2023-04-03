@@ -12,6 +12,7 @@ import java.util.Collections;
 @Getter
 @AllArgsConstructor
 public class CustomUserDetail implements UserDetails {
+
     private final String username;
 
     @Override

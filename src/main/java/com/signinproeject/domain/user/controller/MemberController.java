@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @Validated
 @RequestMapping("/member")
-public class AuthController {
+public class MemberController {
 
     private final MemberService memberService;
 

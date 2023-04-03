@@ -19,12 +19,12 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "member_id")e
+//    @Column(name = "member_id")
     private Long id;
 
     @Column(name = "account_id",nullable = false,length = 20)
     private String accountId;
-    @Column(name = "name", nullable = false, length = 4)
+    @Column(name = "name", nullable = false, length = 4 ,unique = true)
     private String name;
 
     @Column(name = "password",nullable = false)

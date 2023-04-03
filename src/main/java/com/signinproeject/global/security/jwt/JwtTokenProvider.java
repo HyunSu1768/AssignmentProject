@@ -13,16 +13,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Base64;
 import java.util.Date;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Component
 public class JwtTokenProvider {
-    private String secretKey = "hyunsuprojecthyunsuprojecthyunsuprojecthyunsuprojecthyunsuproject";
+    private String secretKey = "hyunsuprojecthyunsu";
 
     private Long tokenValidTime = 30 * 60 * 1000L;
 
@@ -45,7 +43,7 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    // JWT 토큰에서 인증 정보 조
+    // JWT 토큰에서 인증 정보 조회
     public Authentication getAuthentication(String token){
         UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
         return new UsernamePasswordAuthenticationToken(userDetails,"",userDetails.getAuthorities());
@@ -60,6 +58,7 @@ public class JwtTokenProvider {
     public String resolveToken(HttpServletRequest request){
         return request.getHeader("X-AUTH-TOKEN");
     }
+
     public boolean validateToken(String jwtToken){
         try{
             Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken);
