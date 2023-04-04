@@ -6,6 +6,7 @@ import com.signinproeject.domain.post.controller.dto.request.PostUpdateRequest;
 import com.signinproeject.domain.comment.entity.Comment;
 import com.signinproeject.domain.like.entity.Likes;
 import com.signinproeject.domain.user.entity.entity.Member;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,7 +16,7 @@ import java.util.List;
 @Entity
 @Getter
 @Table(name = "post")
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +39,7 @@ public class Post {
     @OneToMany(mappedBy = "post")
     private List<Comment> comments = new ArrayList<>();
 
+
     public Post(Long id, String title, String description,  Member member) {
         this.title = title;
         this.description = description;
@@ -54,4 +56,5 @@ public class Post {
         this.title = postUpdateRequest.getTitle();
         this.description = postUpdateRequest.getDescription();
     }
+
 }

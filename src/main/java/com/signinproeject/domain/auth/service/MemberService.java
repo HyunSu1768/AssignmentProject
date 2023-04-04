@@ -32,10 +32,12 @@ public class MemberService {
     @Transactional
     public Member join(MemberSignUpRequest member) {
 
-
+        // 비밀번호 암호화
         String EncodedPassword = passwordEncoder.encode(member.getPassword());
 
+        //이름 중복 방지
         validateDuplicateMember(member);
+
 
         Member member1 = Member.builder()
                 .accountId(member.getAccountId())

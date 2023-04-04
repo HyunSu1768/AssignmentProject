@@ -36,9 +36,15 @@ public class LikeService {
 
         Post post = postRepository.findById(postId)
                 .orElseThrow( () -> new EntityNotFoundException("찾을 수 없는 엔티티 입니다."));
+        Likes like1 = likeRepository.findByMemberIdAndPost(memberId, post);
 
-        Likes likes = new Likes(memberId,post);
+        if(like1==null){
+            Likes likes = new Likes(memberId,post);
+            likeRepository.save(likes);
+        } else if (like1.getMemberId()==memberId){
+            likeRepository.deleteByMemberIdAndPost(memberId,post);
+        }
 
-        likeRepository.save(likes);
+
     }
 }
