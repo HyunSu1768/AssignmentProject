@@ -35,7 +35,7 @@ public class CommentService {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
 
         Member member = memberRepository.findByName(name)
-                .orElseThrow(()-> new EntityNotFoundException("찾을 수 없는 엔티티 입니다."));
+                .orElseThrow(() -> new EntityNotFoundException("찾을 수 없는 멤버 입니다."));
 
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new EntityNotFoundException("포스트 아이디 " + postId + "는 없는 포스트 아이디 입니다."));
@@ -66,6 +66,11 @@ public class CommentService {
                 )
         );
 
+    }
+
+    @Transactional
+    public void deleteComment(Long commentId){
+        commentRepository.deleteById(commentId);
     }
 
 }

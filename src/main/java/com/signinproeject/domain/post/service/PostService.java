@@ -59,6 +59,11 @@ public class PostService {
         );
     }
 
+    @Transactional
+    public void deletePost(Long postId){
+        postRepository.deleteById(postId);
+    }
+
     public PostListResponse findAllPost() {
 
         List<PostResponse> postResponses = postRepository.findAll().stream()
