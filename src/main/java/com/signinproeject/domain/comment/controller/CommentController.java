@@ -5,6 +5,7 @@ import com.signinproeject.domain.comment.controller.dto.request.CommentUpdateReq
 import com.signinproeject.domain.comment.service.CommentService;
 import com.signinproeject.domain.auth.service.MemberService;
 import com.signinproeject.domain.user.entity.entity.Member;
+import com.signinproeject.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +15,9 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class CommentController {
 
-    private final CommentService commentService;
+    private final UserService userService;
 
-    private final MemberService memberService;
+    private final CommentService commentService;
 
     @PostMapping("/{postId}")
     public void newComment(
@@ -34,7 +35,7 @@ public class CommentController {
 
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        Member member = memberService.findOne(name);
+        Member member = userService.findOne(name);
 
         commentService.updateComment(commentId,member.getId(),commentUpdateRequest);
     }
