@@ -2,6 +2,7 @@ package com.signinproeject.domain.user.entity.controller;
 
 import com.signinproeject.domain.auth.controller.dto.response.MemberListResponse;
 import com.signinproeject.domain.auth.service.MemberService;
+import com.signinproeject.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserController {
 
-    private final MemberService memberService;
+    private final UserService userService;
 
     @GetMapping("/all")
     public MemberListResponse findMembers() {
 
-        return memberService.findAllMembers();
-
+        return userService.findAllMembers();
     }
 }

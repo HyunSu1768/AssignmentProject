@@ -68,21 +68,7 @@ public class MemberService {
 
     }
 
-    public Member findOne(String memberName){
-        return memberRepository.findByName(memberName)
-                .orElseThrow(()-> new UsernameNotFoundException("찾을 수 없는 멤버이름 입니다."));
-    }
-
-    public MemberListResponse findAllMembers(){
-
-        List<MemberResponse> memberResponseList = memberRepository.findAll()
-                .stream()
-                .map(MemberResponse::of).toList();
-
-        return MemberListResponse.builder()
-                .memberResponseList(memberResponseList)
-                .build();
-    }
+//
 
 
     private void validateDuplicateMember(MemberSignUpRequest member){

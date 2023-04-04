@@ -8,6 +8,7 @@ import com.signinproeject.domain.auth.service.MemberService;
 import com.signinproeject.domain.post.service.PostService;
 import com.signinproeject.domain.user.entity.entity.Member;
 import com.signinproeject.domain.like.controller.dto.request.SetLikeRequest;
+import com.signinproeject.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/post")
 public class PostController {
+
+    private final UserService userService;
 
     private final MemberService memberService;
 
@@ -41,7 +44,7 @@ public class PostController {
 
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        Member member = memberService.findOne(name);
+        Member member = userService.findOne(name);
 
         postService.updatePost(postId,member.getId(),postUpdateRequest);
     }
