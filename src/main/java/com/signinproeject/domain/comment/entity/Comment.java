@@ -1,5 +1,6 @@
 package com.signinproeject.domain.comment.entity;
 
+import com.signinproeject.domain.comment.controller.dto.request.CommentUpdateRequest;
 import com.signinproeject.domain.user.entity.entity.Member;
 import com.signinproeject.domain.post.entity.Post;
 import lombok.AllArgsConstructor;
@@ -39,5 +40,8 @@ public class Comment {
         this.member = member;
     }
 
+    public void updateComment(CommentUpdateRequest request){
+        this.content = request.getContent();
+    }
 
 }

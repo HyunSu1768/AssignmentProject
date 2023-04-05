@@ -45,18 +45,9 @@ public class PostService {
             throw new IllegalStateException();
         }
 
+        post.editPost(request);
 
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new IllegalStateException(""));
-
-        postRepository.save(
-            new Post(
-                postId,
-                request.getTitle(),
-                request.getDescription(),
-                member
-            )
-        );
+        postRepository.save(post);
     }
 
     @Transactional

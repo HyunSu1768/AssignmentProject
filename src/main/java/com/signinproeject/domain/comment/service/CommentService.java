@@ -57,14 +57,9 @@ public class CommentService {
             throw new IllegalStateException("접근할 수 없습니다.");
         }
 
-        commentRepository.save(
-                new Comment(
-                        request.getContent(),
-                        comment.getPost(),
-                        comment.getCreateTime(),
-                        comment.getMember()
-                )
-        );
+        comment.updateComment(request);
+
+        commentRepository.save(comment);
 
     }
 

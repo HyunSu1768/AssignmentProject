@@ -40,11 +40,6 @@ public class Post {
     private List<Comment> comments = new ArrayList<>();
 
 
-    public Post(Long id, String title, String description,  Member member) {
-        this.title = title;
-        this.description = description;
-        this.member = member;
-    }
 
     public Post(String title, String description,  Member member) {
         this.title = title;
