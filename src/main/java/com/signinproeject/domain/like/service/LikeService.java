@@ -40,8 +40,10 @@ public class LikeService {
 
         if(like1==null){
             Likes likes = new Likes(memberId,post);
+            post.addLike();
             likeRepository.save(likes);
         } else if (like1.getMemberId()==memberId){
+            post.cancelLike();
             likeRepository.deleteByMemberIdAndPost(memberId,post);
         }
 

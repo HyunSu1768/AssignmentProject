@@ -10,6 +10,6 @@ import java.util.List;
 @Builder
 public class PostListResponse {
 
-    List<PostResponse> postCreateRequests;
+    List<PostResponse> postResponseList;
 
 }
