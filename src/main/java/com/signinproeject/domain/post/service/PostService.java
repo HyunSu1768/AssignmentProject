@@ -9,6 +9,7 @@ import com.signinproeject.domain.user.entity.entity.Member;
 import com.signinproeject.domain.post.entity.Post;
 import com.signinproeject.domain.auth.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,16 +60,31 @@ public class PostService {
 
         List<PostResponse> postResponses = postRepository.findAll().stream()
                 .map(it -> PostResponse.builder()
+                        .like(it.getLikes().size())
                         .description(it.getDescription())
                         .title(it.getTitle())
                         .memberId(it.getMember().getId())
                         .build()).toList();
 
         return PostListResponse.builder()
-                .postCreateRequests(postResponses)
+                .postResponseList(postResponses)
                 .build();
     }
+    public PostListResponse findAllPostSort(){
+        List<PostResponse> postResponses = postRepository
+                .findAll(Sort.by(Sort.Direction.DESC,"likeCount"))
+                .stream()
+                .map(it -> PostResponse.builder()
+                        .like(it.getLikes().size())
+                        .description(it.getDescription())
+                        .title(it.getTitle())
+                        .memberId(it.getMember().getId())
+                        .build()).toList();
 
+        return PostListResponse.builder()
+                .postResponseList(postResponses)
+                .build();
+    }
 
 
 }

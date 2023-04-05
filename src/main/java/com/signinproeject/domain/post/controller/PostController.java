@@ -20,13 +20,7 @@ public class PostController {
 
     private final UserService userService;
 
-    private final MemberService memberService;
-
     private final PostService postService;
-
-    private final LikeService likeService;
-
-
 
     @PostMapping
     public void createPost(
@@ -35,6 +29,8 @@ public class PostController {
     ){
         postService.createPost(post);
     }
+
+
 
     @PutMapping("/edit/{postId}")
     public void editPost(
@@ -52,8 +48,9 @@ public class PostController {
 
     @GetMapping
     public PostListResponse findAllPost(){
-        return postService.findAllPost();
+        return postService.findAllPostSort();
     }
+
 
     @DeleteMapping("/delete/{postId}")
     public void deletePost(

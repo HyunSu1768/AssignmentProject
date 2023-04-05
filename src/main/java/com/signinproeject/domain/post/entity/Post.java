@@ -18,13 +18,15 @@ import java.util.List;
 @Table(name = "post")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Post {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @OneToMany(mappedBy = "post")
     private List<Likes> likes;
+
+    private int likeCount;
 
     @Column(name = "title")
     private String title;
@@ -40,6 +42,12 @@ public class Post {
     private List<Comment> comments = new ArrayList<>();
 
 
+    public void addLike(){
+        this.likeCount++;
+    }
+    public void cancelLike(){
+        this.likeCount--;
+    }
 
     public Post(String title, String description,  Member member) {
         this.title = title;
