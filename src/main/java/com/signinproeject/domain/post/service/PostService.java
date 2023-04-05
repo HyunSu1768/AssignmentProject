@@ -1,5 +1,7 @@
 package com.signinproeject.domain.post.service;
 
+import com.signinproeject.domain.comment.controller.dto.response.CommentResponse;
+import com.signinproeject.domain.like.controller.dto.response.LikeResponse;
 import com.signinproeject.domain.post.controller.dto.request.PostCreateRequest;
 import com.signinproeject.domain.post.controller.dto.response.PostListResponse;
 import com.signinproeject.domain.post.controller.dto.response.PostResponse;
@@ -79,6 +81,12 @@ public class PostService {
                         .description(it.getDescription())
                         .title(it.getTitle())
                         .memberId(it.getMember().getId())
+                        .commentResponses(it.getComments().stream()
+                                .map(CommentResponse::of)
+                                .toList())
+                        .likeResponses(it.getLikes().stream()
+                                .map(LikeResponse::of)
+                                .toList())
                         .build()).toList();
 
         return PostListResponse.builder()
