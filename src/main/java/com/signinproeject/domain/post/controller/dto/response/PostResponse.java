@@ -21,6 +21,8 @@ public class PostResponse {
 
     private int like;
 
+    private int viewCount;
+
     private List<CommentResponse> commentResponses;
     private List<LikeResponse> likeResponses;
 

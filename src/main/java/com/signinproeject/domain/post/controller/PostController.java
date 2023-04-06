@@ -3,11 +3,9 @@ package com.signinproeject.domain.post.controller;
 import com.signinproeject.domain.post.controller.dto.request.PostCreateRequest;
 import com.signinproeject.domain.post.controller.dto.request.PostUpdateRequest;
 import com.signinproeject.domain.post.controller.dto.response.PostListResponse;
-import com.signinproeject.domain.like.service.LikeService;
-import com.signinproeject.domain.auth.service.MemberService;
+import com.signinproeject.domain.post.controller.dto.response.PostResponse;
 import com.signinproeject.domain.post.service.PostService;
 import com.signinproeject.domain.user.entity.entity.Member;
-import com.signinproeject.domain.like.controller.dto.request.SetLikeRequest;
 import com.signinproeject.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -51,6 +49,13 @@ public class PostController {
         return postService.findAllPostSort();
     }
 
+
+    @GetMapping("/{postId}")
+    public PostResponse findOnePost(
+            @PathVariable Long postId
+    ){
+        return postService.findOne(postId);
+    }
 
     @DeleteMapping("/delete/{postId}")
     public void deletePost(

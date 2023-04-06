@@ -26,6 +26,8 @@ public class Post {
     @OneToMany(mappedBy = "post")
     private List<Likes> likes;
 
+    private int viewCount;
+
     private int likeCount;
 
     @Column(name = "title")
@@ -41,6 +43,9 @@ public class Post {
     @OneToMany(mappedBy = "post")
     private List<Comment> comments = new ArrayList<>();
 
+    public void addView(){
+        this.viewCount++;
+    }
 
     public void addLike(){
         this.likeCount++;

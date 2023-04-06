@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 @Builder
 @Data
 public class CommentResponse {
+
     private String content;
 
     private LocalDateTime createTime;
-
 
     public static CommentResponse of(Comment comment){
 

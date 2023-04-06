@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -77,6 +78,7 @@ public class PostService {
                 .findAll(Sort.by(Sort.Direction.DESC,"likeCount"))
                 .stream()
                 .map(it -> PostResponse.builder()
+                        .viewCount(it.getViewCount())
                         .like(it.getLikes().size())
                         .description(it.getDescription())
                         .title(it.getTitle())
@@ -92,6 +94,31 @@ public class PostService {
         return PostListResponse.builder()
                 .postResponseList(postResponses)
                 .build();
+    }
+
+    @Transactional
+    public PostResponse findOne(Long postId){
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new EntityNotFoundException("포스트를 찾을 수 없습니다."));
+
+        post.addView();
+
+        return PostResponse.builder()
+                .commentResponses(post.getComments().stream()
+                        .map(CommentResponse::of)
+                        .toList())
+                .likeResponses(post.getLikes().stream()
+                        .map(LikeResponse::of)
+                        .toList())
+
+                .viewCount(post.getViewCount())
+                .like(post.getLikeCount())
+                .title(post.getTitle())
+                .description(post.getDescription())
+                .memberId(post.getId())
+                .build();
+
+
     }
 
 

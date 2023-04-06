@@ -28,6 +28,7 @@ public class MemberResponse {
         List<PostResponse> postResponseList = member.getPostList().stream()
                 .map(it -> PostResponse.builder()
 
+                        .viewCount(it.getViewCount())
                         .like(it.getLikeCount())
 
                         .likeResponses(it.getLikes().stream().map(it1 -> LikeResponse.builder()
