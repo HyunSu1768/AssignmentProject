@@ -83,7 +83,7 @@ public class PostService {
         }else if(sortType==SortType.view){
             posts = postRepository.findAllByOrderByViewCountDesc(pageable);
         }else{
-            posts = postRepository.findAllByOrderByIdDesc(pageable);
+            posts = postRepository.findAllByOrderByIdAsc(pageable);
         }
 
         List<PostResponse> postResponses = posts
