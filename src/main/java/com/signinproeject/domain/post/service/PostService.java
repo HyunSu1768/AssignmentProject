@@ -5,12 +5,14 @@ import com.signinproeject.domain.like.controller.dto.response.LikeResponse;
 import com.signinproeject.domain.post.controller.dto.request.PostCreateRequest;
 import com.signinproeject.domain.post.controller.dto.response.PostListResponse;
 import com.signinproeject.domain.post.controller.dto.response.PostResponse;
+import com.signinproeject.domain.post.entity.SortType;
 import com.signinproeject.domain.post.repository.PostRepository;
 import com.signinproeject.domain.post.controller.dto.request.PostUpdateRequest;
 import com.signinproeject.domain.user.entity.entity.Member;
 import com.signinproeject.domain.post.entity.Post;
 import com.signinproeject.domain.auth.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -74,9 +76,17 @@ public class PostService {
                 .postResponseList(postResponses)
                 .build();
     }
-    public PostListResponse findAllPostSort(Pageable pageable){
-        List<PostResponse> postResponses = postRepository
-                .findAllByOrderByViewCountDesc(pageable)
+    public PostListResponse findAllPostSort(Pageable pageable, SortType sortType){
+        Page<Post> posts = postRepository.findAllByOrderByLikeCountDesc(pageable);
+        if(sortType==SortType.like){
+            posts = postRepository.findAllByOrderByLikeCountDesc(pageable);
+        }else if(sortType==SortType.view){
+            posts = postRepository.findAllByOrderByViewCountDesc(pageable);
+        }else{
+            posts = postRepository.findAllByOrderByIdDesc(pageable);
+        }
+
+        List<PostResponse> postResponses = posts
                 .stream()
                 .map(it -> PostResponse.builder()
                         .viewCount(it.getViewCount())

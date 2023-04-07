@@ -4,6 +4,7 @@ import com.signinproeject.domain.post.controller.dto.request.PostCreateRequest;
 import com.signinproeject.domain.post.controller.dto.request.PostUpdateRequest;
 import com.signinproeject.domain.post.controller.dto.response.PostListResponse;
 import com.signinproeject.domain.post.controller.dto.response.PostResponse;
+import com.signinproeject.domain.post.entity.SortType;
 import com.signinproeject.domain.post.service.PostService;
 import com.signinproeject.domain.user.entity.entity.Member;
 import com.signinproeject.domain.user.service.UserService;
@@ -46,8 +47,8 @@ public class PostController {
 
 
     @GetMapping
-    public PostListResponse findAllPost(Pageable pageable){
-        return postService.findAllPostSort(pageable);
+    public PostListResponse findAllPost(Pageable pageable,@RequestParam("sort_type") SortType sortType){
+        return postService.findAllPostSort(pageable,sortType);
     }
 
 

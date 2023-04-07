@@ -50,6 +50,7 @@ public class Post {
     public void addLike(){
         this.likeCount++;
     }
+
     public void cancelLike(){
         this.likeCount--;
     }
