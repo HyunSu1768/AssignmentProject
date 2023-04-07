@@ -11,6 +11,7 @@ import com.signinproeject.domain.user.entity.entity.Member;
 import com.signinproeject.domain.post.entity.Post;
 import com.signinproeject.domain.auth.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -73,9 +74,9 @@ public class PostService {
                 .postResponseList(postResponses)
                 .build();
     }
-    public PostListResponse findAllPostSort(){
+    public PostListResponse findAllPostSort(Pageable pageable){
         List<PostResponse> postResponses = postRepository
-                .findAll(Sort.by(Sort.Direction.DESC,"likeCount"))
+                .findAllByOrderByViewCountDesc(pageable)
                 .stream()
                 .map(it -> PostResponse.builder()
                         .viewCount(it.getViewCount())

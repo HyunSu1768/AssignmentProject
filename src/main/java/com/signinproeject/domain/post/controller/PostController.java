@@ -8,6 +8,7 @@ import com.signinproeject.domain.post.service.PostService;
 import com.signinproeject.domain.user.entity.entity.Member;
 import com.signinproeject.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,8 +46,8 @@ public class PostController {
 
 
     @GetMapping
-    public PostListResponse findAllPost(){
-        return postService.findAllPostSort();
+    public PostListResponse findAllPost(Pageable pageable){
+        return postService.findAllPostSort(pageable);
     }
 
 
