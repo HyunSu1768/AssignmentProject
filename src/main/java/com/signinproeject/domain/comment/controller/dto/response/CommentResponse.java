@@ -2,7 +2,6 @@ package com.signinproeject.domain.comment.controller.dto.response;
 
 
 import com.signinproeject.domain.comment.entity.Comment;
-import com.signinproeject.domain.post.entity.Post;
 import lombok.Builder;
 import lombok.Data;
 

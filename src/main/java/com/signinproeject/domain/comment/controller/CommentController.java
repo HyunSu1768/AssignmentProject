@@ -3,7 +3,6 @@ package com.signinproeject.domain.comment.controller;
 import com.signinproeject.domain.comment.controller.dto.request.CommentRequest;
 import com.signinproeject.domain.comment.controller.dto.request.CommentUpdateRequest;
 import com.signinproeject.domain.comment.service.CommentService;
-import com.signinproeject.domain.auth.service.MemberService;
 import com.signinproeject.domain.user.entity.entity.Member;
 import com.signinproeject.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;

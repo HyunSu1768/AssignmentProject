@@ -13,6 +13,7 @@ import java.util.List;
 @Builder
 @Data
 public class MemberResponse {
+
     private String accountId;
 
     private String name;
@@ -22,7 +23,6 @@ public class MemberResponse {
     private int studentNumber;
 
     private List<PostResponse> postResponses;
-
 
     public static MemberResponse of(Member member){
         List<PostResponse> postResponseList = member.getPostList().stream()

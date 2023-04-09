@@ -1,16 +1,14 @@
 package com.signinproeject.domain.user.entity.entity;
 
-import javax.persistence.*;
-
 import com.signinproeject.domain.comment.entity.Comment;
 import com.signinproeject.domain.post.entity.Post;
-import com.signinproeject.domain.user.entity.grade.Grade;
 import com.signinproeject.domain.user.entity.grade.Grade;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
