@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 @Service
 @Transactional(readOnly = true)
@@ -84,25 +85,8 @@ public class PostService {
             posts = postRepository.findAllByOrderByIdAsc(pageable);
         }
 
-        List<PostResponse> postResponses = posts
-                .stream()
-                .map(it -> PostResponse.builder()
-                        .viewCount(it.getViewCount())
-                        .like(it.getLikes().size())
-                        .description(it.getDescription())
-                        .title(it.getTitle())
-                        .memberId(it.getMember().getId())
-                        .commentResponses(it.getComments().stream()
-                                .map(CommentResponse::of)
-                                .toList())
-                        .likeResponses(it.getLikes().stream()
-                                .map(LikeResponse::of)
-                                .toList())
-                        .build()).toList();
-
-        return PostListResponse.builder()
-                .postResponseList(postResponses)
-                .build();
+        return getPostListResponse(posts
+                .stream(),posts);
     }
 
     @Transactional
@@ -128,6 +112,44 @@ public class PostService {
                 .build();
 
 
+    }
+
+    public PostListResponse findByTitle(String title){
+
+        List<Post> posts = postRepository.findByTitleContaining(title);
+
+        return getPostListResponse(posts
+                .stream(), posts);
+
+
+    }
+
+    private PostListResponse getPostListResponse(Stream<Post> stream, List<Post> posts) {
+        return getPostListResponse(stream);
+    }
+    private PostListResponse getPostListResponse(Stream<Post> stream, Page<Post> posts) {
+        return getPostListResponse(stream);
+    }
+
+    private PostListResponse getPostListResponse(Stream<Post> stream) {
+        List<PostResponse> postResponses = stream
+                .map(it -> PostResponse.builder()
+                        .viewCount(it.getViewCount())
+                        .like(it.getLikes().size())
+                        .description(it.getDescription())
+                        .title(it.getTitle())
+                        .memberId(it.getMember().getId())
+                        .commentResponses(it.getComments().stream()
+                                .map(CommentResponse::of)
+                                .toList())
+                        .likeResponses(it.getLikes().stream()
+                                .map(LikeResponse::of)
+                                .toList())
+                        .build()).toList();
+
+        return PostListResponse.builder()
+                .postResponseList(postResponses)
+                .build();
     }
 
 

@@ -66,5 +66,11 @@ public class PostController {
         postService.deletePost(postId);
     }
 
+    @GetMapping("/search")
+    public PostListResponse findPostByTitle(
+            @RequestParam String title
+    ){
+        return postService.findByTitle(title);
+    }
 
 }
